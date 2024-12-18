@@ -2,9 +2,11 @@ import httpx
 
 from prefect import flow, task # Prefect flow and task decorators
 
+# Source for the code to deploy (here, a GitHub repo)
+SOURCE_REPO="https://github.com/minyeong-jeong/prefect-test-flow.git"
 
 @flow(log_prints=True)
-def show_stars(github_repos: list[str]):
+def show_stars(github_repos: list[str] = ["PrefectHQ/prefect", "pydantic/pydantic", "huggingface/transformers"]):
     """Flow: Show the number of stars that GitHub repos have"""
 
     for repo in github_repos:
@@ -34,13 +36,11 @@ def get_stars(repo_stats: dict):
 
 # Run the flow
 if __name__ == "__main__":
-    show_stars([
-        "PrefectHQ/prefect",
-        "pydantic/pydantic",
-        "huggingface/transformers"
-    ]).deploy(
+    flow.from_source(
+        source=SOURCE_REPO,
+        entrypoint="test.py:show_stars",
+    ).deploy(
         name="blabla",
         work_pool_name="4d-windows-pool",
-        cron="* * * * *",
     )
 
