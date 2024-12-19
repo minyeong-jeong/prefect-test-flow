@@ -7,7 +7,7 @@ from prefect import flow, task # Prefect flow and task decorators
 @flow(log_prints=True)
 def write_text_file():
     # Define the path for the file
-    file_path = os.path.join(os.environ['USERPROFILE'], 'Desktop', 'example.txt')
+    file_path = os.path.join('/mnt', 'c', 'Users', 'user', , 'Desktop', 'example.txt')
 
     # Content to write into the file
     content = "Hello, this is a simple text file created by Python!"
