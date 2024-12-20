@@ -3,6 +3,21 @@ import os
 
 from prefect import flow, task # Prefect flow and task decorators
 
+# let's make the first part
+
+def video_to_frame():
+
+def backup_video():
+
+def backup_frame():
+
+
+# let's make the second part
+
+def frame_to_obj():
+
+def gcp_to_wrap_coords():
+
 
 @flow(log_prints=True)
 def write_text_file():
