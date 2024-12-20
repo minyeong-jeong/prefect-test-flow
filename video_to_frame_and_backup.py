@@ -26,6 +26,10 @@ def backup_frame(source_directory):
 
     dest_directory = os.path.join([parent_directory] + directory_list)
 
+    print(source_directory, '->', dest_directory)
+
+    return
+
     shutil.copy2(source_directory, dest_directory)
 
 @task
@@ -110,6 +114,8 @@ def video_to_frame_and_backup(video_directory, dest_directory):
 
     # non blocking for copyting video
     backup_video(video_directory)
+
+    return
 
     # slice it into frames
     # video_directory = ...<project-number>/video/<cam-num>.MOV
